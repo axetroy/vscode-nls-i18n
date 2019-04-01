@@ -19,7 +19,7 @@ export class Localize {
    * @param key
    * @param args
    */
-  public localize(key: string, ...args: any[]): string {
+  public localize(key: string, ...args: string[]): string {
     const languagePack = this.bundle;
     const message: string = languagePack[key] || key;
     return this.format(message, args);
@@ -28,7 +28,7 @@ export class Localize {
     this.extensionContext = context;
     this.bundle = this.resolveLanguagePack();
   }
-  private format(message: string, args: any[] = []): string {
+  private format(message: string, args: string[] = []): string {
     let result: string;
     if (args.length === 0) {
       result = message;
@@ -107,8 +107,10 @@ try {
 
 const instance = new Localize(config);
 
-const localize = instance.localize.bind(instance);
-const init = instance.init.bind(instance);
+export function init(context: vscode.ExtensionContext): void {
+  return instance.init(context);
+}
 
-export default localize;
-export { init, localize };
+export function localize(key: string, ...args: string[]): string {
+  return instance.localize(key, ...args);
+}
