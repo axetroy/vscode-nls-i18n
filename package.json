@@ -1,0 +1,27 @@
+{
+  "name": "vscode-nls-i18n",
+  "version": "0.1.0",
+  "description": "i18n support for vscode extension",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "npm run build",
+    "build": "tsc -p tsconfig.json -d",
+    "watch": "tsc -p tsconfig.json --watch"
+  },
+  "typings": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axetroy/vscode-nls-i18n.git"
+  },
+  "author": "axetroy",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/axetroy/vscode-nls-i18n/issues"
+  },
+  "homepage": "https://github.com/axetroy/vscode-nls-i18n#readme",
+  "devDependencies": {
+    "@types/node": "^11.9.6",
+    "typescript": "^3.3.3333",
+    "vscode": "^1.1.33"
+  }
+}
