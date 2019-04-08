@@ -1,7 +1,7 @@
 # vscode-nls-i18n
 
 ![Node](https://img.shields.io/badge/node-%3E=7.6-blue.svg?style=flat-square)
-[![npm version](https://badge.fury.io/js/vscode-nls-i18n.svg)](https://badge.fury.io/js/vscode-nls-i18n)
+[![npm version](https://badge.fury.io/js/vscode-nls-i18n.svg)](https://badge.fury.io/js/vscode-nls-i18n) [![Greenkeeper badge](https://badges.greenkeeper.io/axetroy/vscode-nls-i18n.svg)](https://greenkeeper.io/)
 ![Size](https://github-size-badge.herokuapp.com/axetroy/vscode-nls-i18n.svg)
 
 vscode library for supporting i18n.
