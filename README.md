@@ -31,7 +31,7 @@ eg.
 const { init, localize } = require("vscode-nls-i18n");
 
 function activate(context) {
-  init(context);
+  init(context.extensionPath);
   console.log(localize("say.hello", "world")); // hello world
 }
 ```
