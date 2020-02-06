@@ -1,6 +1,5 @@
 import * as fs from "fs";
 import * as path from "path";
-import * as vscode from "vscode";
 
 interface IConfig {
   locale?: string;
@@ -12,7 +11,7 @@ interface ILanguagePack {
 
 export class Localize {
   private bundle: ILanguagePack;
-  private extensionContext: vscode.ExtensionContext;
+  private extensionPath: string;
   constructor(private options: IConfig = {}) {}
   /**
    * translate the key
@@ -24,8 +23,8 @@ export class Localize {
     const message: string = languagePack[key] || key;
     return this.format(message, args);
   }
-  public init(context: vscode.ExtensionContext) {
-    this.extensionContext = context;
+  public init(extensionPath: string) {
+    this.extensionPath = extensionPath;
     this.bundle = this.resolveLanguagePack();
   }
   private format(message: string, args: string[] = []): string {
@@ -43,9 +42,7 @@ export class Localize {
   private resolveLanguagePack(): ILanguagePack {
     const defaultResvoleLanguage = ".nls.json";
     let resolvedLanguage: string = "";
-    const rootPath = this.extensionContext
-      ? this.extensionContext.extensionPath
-      : process.cwd();
+    const rootPath = this.extensionPath || process.cwd();
     const file = path.join(rootPath, "package");
     const options = this.options;
 
@@ -107,8 +104,8 @@ try {
 
 const instance = new Localize(config);
 
-export function init(context: vscode.ExtensionContext): void {
-  return instance.init(context);
+export function init(extensionPath: string): void {
+  return instance.init(extensionPath);
 }
 
 export function localize(key: string, ...args: string[]): string {
