@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/axetroy/vscode-nls-i18n#readme",
   "devDependencies": {
-    "@types/node": "11.15.23",
+    "@types/node": "11.15.24",
     "typescript": "4.0.2",
     "vscode": "1.1.37"
   }
