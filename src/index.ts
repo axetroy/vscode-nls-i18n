@@ -40,14 +40,14 @@ export class Localize {
     return result;
   }
   private resolveLanguagePack(): ILanguagePack {
-    const defaultResvoleLanguage = ".nls.json";
+    const defaultResolvedLanguage = ".nls.json";
     let resolvedLanguage: string = "";
     const rootPath = this.extensionPath || process.cwd();
     const file = path.join(rootPath, "package");
     const options = this.options;
 
     if (!options.locale) {
-      resolvedLanguage = defaultResvoleLanguage;
+      resolvedLanguage = defaultResolvedLanguage;
     } else {
       let locale: string | null = options.locale;
       while (locale) {
@@ -72,8 +72,10 @@ export class Localize {
     // if not use default language
     // then merger the Language pack
     // just in case the resolveLanguage bundle missing the translation and fallback with default language
-    if (resolvedLanguage !== defaultResvoleLanguage) {
-      defaultLanguageBundle = JSON.parse(fs.readFileSync(path.join(file + defaultResvoleLanguage)));
+    if (resolvedLanguage !== defaultResolvedLanguage) {
+      defaultLanguageBundle = JSON.parse(
+        fs.readFileSync(path.join(file + defaultResolvedLanguage), "utf8")
+      );
     }
 
     const languageFilePath = path.join(file + resolvedLanguage);
@@ -81,7 +83,7 @@ export class Localize {
     const isExistResolvedLanguage = fs.existsSync(languageFilePath);
 
     const ResolvedLanguageBundle = isExistResolvedLanguage
-      ? JSON.parse(fs.readFileSync(languageFilePath))
+      ? JSON.parse(fs.readFileSync(languageFilePath, "uf8"))
       : {};
 
     // merger with default language bundle
@@ -90,7 +92,7 @@ export class Localize {
 }
 
 let config: IConfig = {
-  locale: "en"
+  locale: "en",
 };
 
 try {
