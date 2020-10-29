@@ -73,7 +73,7 @@ export class Localize {
     // then merger the Language pack
     // just in case the resolveLanguage bundle missing the translation and fallback with default language
     if (resolvedLanguage !== defaultResvoleLanguage) {
-      defaultLanguageBundle = require(path.join(file + defaultResvoleLanguage));
+      defaultLanguageBundle = JSON.parse(fs.readFileSync(path.join(file + defaultResvoleLanguage)));
     }
 
     const languageFilePath = path.join(file + resolvedLanguage);
@@ -81,7 +81,7 @@ export class Localize {
     const isExistResolvedLanguage = fs.existsSync(languageFilePath);
 
     const ResolvedLanguageBundle = isExistResolvedLanguage
-      ? require(languageFilePath)
+      ? JSON.parse(fs.readFileSync(languageFilePath))
       : {};
 
     // merger with default language bundle
