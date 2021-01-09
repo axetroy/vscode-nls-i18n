@@ -83,7 +83,7 @@ export class Localize {
     const isExistResolvedLanguage = fs.existsSync(languageFilePath);
 
     const ResolvedLanguageBundle = isExistResolvedLanguage
-      ? JSON.parse(fs.readFileSync(languageFilePath, "uf8"))
+      ? JSON.parse(fs.readFileSync(languageFilePath, "utf8"))
       : {};
 
     // merger with default language bundle
