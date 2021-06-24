@@ -91,18 +91,9 @@ export class Localize {
   }
 }
 
-let config: IConfig = {
-  locale: "en",
+let config = {
+    locale: vscode.env.language
 };
-
-try {
-  config = Object.assign(
-    config,
-    JSON.parse((process.env as any).VSCODE_NLS_CONFIG)
-  );
-} catch (err) {
-  //
-}
 
 const instance = new Localize(config);
 
