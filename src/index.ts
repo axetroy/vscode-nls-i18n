@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
+import * as vscode from "vscode";
 
 interface IConfig {
   locale?: string;
@@ -73,18 +74,14 @@ export class Localize {
     // then merger the Language pack
     // just in case the resolveLanguage bundle missing the translation and fallback with default language
     if (resolvedLanguage !== defaultResolvedLanguage) {
-      defaultLanguageBundle = JSON.parse(
-        fs.readFileSync(path.join(file + defaultResolvedLanguage), "utf8")
-      );
+      defaultLanguageBundle = JSON.parse(fs.readFileSync(path.join(file + defaultResolvedLanguage), "utf8"));
     }
 
     const languageFilePath = path.join(file + resolvedLanguage);
 
     const isExistResolvedLanguage = fs.existsSync(languageFilePath);
 
-    const ResolvedLanguageBundle = isExistResolvedLanguage
-      ? JSON.parse(fs.readFileSync(languageFilePath, "utf8"))
-      : {};
+    const ResolvedLanguageBundle = isExistResolvedLanguage ? JSON.parse(fs.readFileSync(languageFilePath, "utf8")) : {};
 
     // merger with default language bundle
     return { ...defaultLanguageBundle, ...ResolvedLanguageBundle };
@@ -92,7 +89,7 @@ export class Localize {
 }
 
 let config = {
-    locale: vscode.env.language
+  locale: vscode.env.language,
 };
 
 const instance = new Localize(config);
