@@ -88,16 +88,12 @@ export class Localize {
   }
 }
 
-let config = {
+const config: IConfig = {
   locale: vscode.env.language,
 };
 
 const instance = new Localize(config);
 
-export function init(extensionPath: string): void {
-  return instance.init(extensionPath);
-}
+export const init = instance.init.bind(instance) as typeof instance.init;
 
-export function localize(key: string, ...args: string[]): string {
-  return instance.localize(key, ...args);
-}
+export const localize = instance.localize.bind(instance) as typeof instance.localize;
